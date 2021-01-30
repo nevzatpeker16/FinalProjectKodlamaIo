@@ -61,6 +61,15 @@ namespace DataAccess.Concrete.InMemory
             //Bütün ürünlerin listesini döndürecek... 
         }
 
+        public List<Product> GetByCategory(int categoryID)
+        {
+             return _products.Where(p => p.CategoryID == categoryID).ToList();
+
+            //Where koşulu içindeki şarta uyan bütün elemenleri liste halinde döndürür.
+            //SQL Where gibi düşünülebilir.
+
+        }
+
         public void UpdateProduct(Product product)
         {
             //Direk Ürün id bazında ürünü bul diyoruz . 

@@ -15,5 +15,6 @@ namespace DataAccess.Abstract
         void UpdateProduct(Product product);
         List<Product> GetAll();
 
+        List<Product> GetByCategory(int categoryID);
     }
 }

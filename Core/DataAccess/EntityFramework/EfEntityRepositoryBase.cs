@@ -18,6 +18,8 @@ namespace Core.DataAccess.EntityFramework
         //TEntity sınıf , IEntity nesnesi ve new edilebilen bir nesne olabilir,
         //TContext ise DbContext ve new edilebilen bir nesne olabilir.
         //Northwind context ten aldığımız bütün methodları direk , genel generic bir sınıf yaptık.
+        //Altyapı bütün veritabanları için uygun oldu şuan ...
+
         public void Add(TEntity entity)
         {
 
@@ -83,5 +85,4 @@ namespace Core.DataAccess.EntityFramework
         }
     }
 
-}
 }

@@ -26,10 +26,21 @@ namespace DataAccess.Concrete.InMemory
             };
             //Bir adet _products nesnesi ram da oluşturuldu...
         }
+
+        public void Add(Product entity)
+        {
+            throw new NotImplementedException();
+        }
+
         public void AddProduct(Product product)
         {
 
             _products.Add(product);
+        }
+
+        public void Delete(Product entity)
+        {
+            throw new NotImplementedException();
         }
 
         public void DeleteProduct(Product product)
@@ -79,6 +90,11 @@ namespace DataAccess.Concrete.InMemory
             //Where koşulu içindeki şarta uyan bütün elemenleri liste halinde döndürür.
             //SQL Where gibi düşünülebilir.
 
+        }
+
+        public void Update(Product entity)
+        {
+            throw new NotImplementedException();
         }
 
         public void UpdateProduct(Product product)

@@ -1,4 +1,5 @@
-﻿using DataAccess.Abstract;
+﻿using Core.DataAccess.EntityFramework;
+using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -7,35 +8,14 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfCategoryDal : ICategoryDal
+    public class EfCategoryDal :EfEntityRepositoryBase<Category,NorthwindContext> , ICategoryDal
     {
         public EfCategoryDal()
         {
         }
 
-        public void AddProduct(Category entity)
-        {
-            throw new NotImplementedException();
-        }
+        //EfEntityRepositorybase de bütün db işlemleri var.
 
-        public void DeleteProduct(Category entity)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Category Get(Expression<Func<Category, bool>> filter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Category> GetAll(Expression<Func<Category, bool>> filter = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void UpdateProduct(Category entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

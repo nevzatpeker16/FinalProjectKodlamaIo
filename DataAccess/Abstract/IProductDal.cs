@@ -21,3 +21,5 @@ namespace DataAccess.Abstract
         //List<Product> GetByCategory(int categoryID);
     }
 }
+
+//Code Refactoring...

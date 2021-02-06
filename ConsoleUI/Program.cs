@@ -13,15 +13,31 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            ProductTest();
+            CategoryTest();
+
+
+
+            //Direk gerçek veritabanından data gelmiş oldu. 
+        }
+
+        private static void ProductTest()
+        {
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (var product in productManager.getAllProductsByUnitPrice(1,5000))
+            foreach (var product in productManager.getAllProductsByUnitPrice(1, 5000))
             {
                 Console.WriteLine(product.ProductName);
             }
+        }
+        private static void CategoryTest()
+        {
+            CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
+                foreach (var category in categoryManager.GetByCategoryID(1))
+            {
+                Console.WriteLine(category.CategoryName);
 
-            
+            }
 
-            //Direk gerçek veritabanından data gelmiş oldu. 
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Core.DataAcess;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +20,7 @@ namespace DataAccess.Abstract
         //List<Product> GetAll();
 
         //List<Product> GetByCategory(int categoryID);
+        List<ProductDetailDto> GetProductDetails();
     }
 }
 

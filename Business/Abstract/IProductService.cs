@@ -9,6 +9,7 @@ namespace Business.Abstract
     {
         //İş Katmanında kullanacağımız servis yapılarını burada belirtiyoruz...
         List<Product> getAllProducts();
-
+        List<Product> getAllProductsByCategory(int categoryId);
+        List<Product> getAllProductsByUnitPrice(decimal unitPriceMax,decimal unitPriceMin);
     }
 }

@@ -13,6 +13,7 @@ namespace Business.Concrete
     {
         //Bu referans injection olayını çok iyi anlamak lazım , bütün yazılımda nesne bağlılığını en aza indiriyor.
         //IProductDal herşey olabilir istediği herşey memory ya da başka biri, problem yok Interface gönderiyoruz çünkü...
+
         IProductDal _productDal;
 
         public ProductManager(IProductDal productDal)
@@ -23,8 +24,19 @@ namespace Business.Concrete
         //Referans injection oldu.
         public List<Product> getAllProducts()
         {
+
             return _productDal.GetAll();
             //Varsa İş kodları buraya yazılır.
+        }
+
+        public List<Product> getAllProductsByCategory(int categoryId)
+        {
+            return _productDal.GetAll(p => p.CategoryID == categoryId);
+        }
+
+        public List<Product> getAllProductsByUnitPrice(decimal unitPriceMin, decimal unitPriceMax)
+        {
+            return _productDal.GetAll(p => p.UnitPrice >= unitPriceMin && p.UnitPrice <= unitPriceMax);
         }
     }
 }

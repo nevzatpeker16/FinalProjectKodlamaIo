@@ -1,4 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -21,26 +25,55 @@ namespace Business.Concrete
         {
            _productDal = productDal;
         }
-        //Product Manager new edildiğinde , bana bir adet productDal ver diyecek ve böylece productDal altında bulunan bütün operasyonlar gelir.
-        //Referans injection oldu.
-        public List<Product> getAllProducts()
+
+        public IResult Add(Product product)
         {
 
-            return _productDal.GetAll();
+            if(product.ProductName.Length < 2)
+            {
+
+                //Magic Strings.
+                return new ErorResult(Messages.ProductNameInvalid);
+
+            }
+            else
+            {
+                _productDal.Add(product);
+                return new SuccessResult(Messages.ProductAdded);
+            }
+           
+
+            //Result IResult tipinde , 
+        }
+
+        //Product Manager new edildiğinde , bana bir adet productDal ver diyecek ve böylece productDal altında bulunan bütün operasyonlar gelir.
+        //Referans injection oldu.
+        public IDataResult<List<Product>> getAllProducts()
+        {
+
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll());
             //Varsa İş kodları buraya yazılır.
         }
 
-        public List<Product> getAllProductsByCategory(int categoryId)
+        public IDataResult<List<Product>> getAllProductsByCategory(int categoryId)
         {
             return _productDal.GetAll(p => p.CategoryID == categoryId);
         }
 
-        public List<Product> getAllProductsByUnitPrice(decimal unitPriceMin, decimal unitPriceMax)
+        public IDataResult<List<Product>> getAllProductsByUnitPrice(decimal unitPriceMin, decimal unitPriceMax)
         {
             return _productDal.GetAll(p => p.UnitPrice >= unitPriceMin && p.UnitPrice <= unitPriceMax);
         }
 
-        public List<ProductDetailDto> GetProductDetail()
+        public IDataResult<Product> getProductByID(int productID)
+        {
+            return new DataResult<List<Product>>(_productDal.Get(p=>p.ProductID == productID),true,"Ürünler ID ye göre listelendi.");
+
+            //p öyle ki p.productID  eşitse girilen productID ye .
+            //Bu da productdal a gider..
+        }
+
+        public IDataResult<List<ProductDetailDto>> GetProductDetail()
         {
             return _productDal.GetProductDetails();
         }

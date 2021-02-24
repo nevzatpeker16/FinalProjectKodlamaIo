@@ -1,4 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
+using Core.Utilities.Results.Abstract;
+using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
@@ -17,15 +21,22 @@ namespace Business.Concrete
         {
             _categoryDal = categoryDal;
         }
+
+        public IDataResult<List<Category>> CheckCategoryCount()
+        {
+            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll());
+        }
+
         //Constructor Injection yapıldı burada.
 
-        public List<Category> GetAll()
+        public IDataResult<List<Category>> GetAll()
         {
-            return _categoryDal.GetAll();
+            return  new SuccessDataResult<List<Category>>(_categoryDal.GetAll(),Messages.CategoryListed);
         }
-        public List<Category> GetByCategoryID(int categoryID)
+        public IDataResult<List<Category>> GetByCategoryID(int categoryID)
         {
-            return _categoryDal.GetAll(c => c.CategoryID == categoryID);
+            return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(c => c.CategoryID == categoryID),Messages.CategoryListed);
         }
+        
     }
 }

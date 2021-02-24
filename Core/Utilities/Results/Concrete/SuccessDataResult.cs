@@ -13,7 +13,7 @@ namespace Core.Utilities.Results.Concrete
         }
         public SuccessDataResult(T data):base(data,true)
         {
-            //Hiç mesaj vermedi direk true
+            //Hiç mesaj vermedi direk true ve data
         }
         public SuccessDataResult(string message):base(default,true,message)
         {

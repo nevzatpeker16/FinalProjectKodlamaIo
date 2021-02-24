@@ -19,6 +19,8 @@ namespace Business.Abstract
         IDataResult<List<ProductDetailDto>> GetProductDetail();
 
         IResult Add(Product product);
+        IResult Update(Product product);
+        IResult Delete(Product product);
 
         //void dönüş tipi olmadığı için Add böyle kalacak.
     }

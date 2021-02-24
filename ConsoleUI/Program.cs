@@ -23,26 +23,32 @@ namespace ConsoleUI
 
         private static void ProductTest()
         {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+            ProductManager productManager = new ProductManager(new EfProductDal(),new CategoryManager(new EfCategoryDal()));
             //foreach (var product in productManager.getAllProductsByUnitPrice(1, 5000))
             //{
             //    Console.WriteLine(product.ProductName);
             //}
-
-            foreach (var products in productManager.GetProductDetail())
+            var result = productManager.GetProductDetail();
+            if(result.Success == true)
             {
-                Console.WriteLine(products.CategoryName+" " + products.ProductID +"  "+ products.ProductName +" " + products.UnitsInStock);
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.ProductName + " " + product.UnitsInStock + " " + product.CategoryName);
+                }
             }
 
         }
         private static void CategoryTest()
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-                foreach (var category in categoryManager.GetByCategoryID(1))
+            var result = categoryManager.GetByCategoryID(1);
+            if(result.Success == true )
             {
-                Console.WriteLine(category.CategoryName);
-
-            }
+                foreach (var category in result.Data)
+                {
+                    Console.WriteLine(category.CategoryName);
+                }
+            }    
 
         }
     }
